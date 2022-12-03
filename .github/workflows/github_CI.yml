@@ -14,9 +14,7 @@ on:
   # Triggered whenever push to the branch
   push:
     branches: 
-    - master
-    - dev-branch
-    - dev2-branch
+    - main
 
   # Triggered whenever a pull request is created on master
   pull_request:
