@@ -56,6 +56,14 @@ class IronaGroup {
    */
   IronaGroup();
 
+  /**
+   * @brief Clean room service callback
+   *
+   * @param goal no. of objects in room
+   */
+  void cleanRoom(
+      const irona::CleanRoomGoalConstPtr &goal); 
+
   ros::NodeHandle nh_;                     // node handle
   ros::Publisher basePublisher_;           // publisher for base
   ros::ServiceClient detectObjectClient_;  // client for detecting objects
