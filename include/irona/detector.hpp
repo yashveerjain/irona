@@ -48,6 +48,16 @@ class Detector {
    */
   Detector();
 
+  /**
+   * @brief This function is used to detect objects in the environment
+   *
+   * @param req // request from the client to start detection
+   * @param res // response to the client
+   * @return whether object is detected
+   */
+  bool detectObject(irona::DetectObject::Request &req,
+                    irona::DetectObject::Response &res);
+
   ros::NodeHandle n;            // node handler
   ros::ServiceServer service;  // service server
   int call_count;                  // number of times the service is called
