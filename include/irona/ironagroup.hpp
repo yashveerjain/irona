@@ -69,7 +69,15 @@ class IronaGroup {
    *
    * @return if object is found or not
    */
-  bool searchObject(); 
+  bool searchObject();
+
+  /**
+   * @brief Function to move the base
+   *
+   * @param basePose target pose for the base
+   */
+  void moveBase(
+      const geometry_msgs::Pose &basePose); 
 
   ros::NodeHandle nh_;                     // node handle
   ros::Publisher basePublisher_;           // publisher for base
