@@ -62,7 +62,14 @@ class IronaGroup {
    * @param goal no. of objects in room
    */
   void cleanRoom(
-      const irona::CleanRoomGoalConstPtr &goal); 
+      const irona::CleanRoomGoalConstPtr &goal);
+
+  /**
+   * @brief function to search for objects
+   *
+   * @return if object is found or not
+   */
+  bool searchObject(); 
 
   ros::NodeHandle nh_;                     // node handle
   ros::Publisher basePublisher_;           // publisher for base
