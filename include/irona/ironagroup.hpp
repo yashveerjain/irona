@@ -77,7 +77,14 @@ class IronaGroup {
    * @param basePose target pose for the base
    */
   void moveBase(
-      const geometry_msgs::Pose &basePose); 
+      const geometry_msgs::Pose &basePose);
+
+  /**
+   * @brief Get the optimal base pose for grasping the object
+   *
+   * @return geometry_msgs::Pose base pose for grasping the object
+   */
+  geometry_msgs::Pose getBasePreGraspPose(); 
 
   ros::NodeHandle nh_;                     // node handle
   ros::Publisher basePublisher_;           // publisher for base
