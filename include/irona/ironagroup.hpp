@@ -84,7 +84,14 @@ class IronaGroup {
    *
    * @return geometry_msgs::Pose base pose for grasping the object
    */
-  geometry_msgs::Pose getBasePreGraspPose(); 
+  geometry_msgs::Pose getBasePreGraspPose();
+
+    /**
+   * @brief Function to remove models from gazebo
+   *
+   * @param id  // id of the model to be removed
+   */
+  void removeModels(const std::string &id); 
 
   ros::NodeHandle nh_;                     // node handle
   ros::Publisher basePublisher_;           // publisher for base
