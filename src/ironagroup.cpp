@@ -55,3 +55,35 @@ IronaGroup::IronaGroup()
   cleanRoomServer_.start();
   ROS_INFO("CLeanroom service done.....");
 }
+
+/**
+ * @brief Function to obtain the optimal base pose before the arm starts to
+ * reach the object
+ *
+ * @return geometry_msgs::Pose // Optimial pose of the base for the arm to reach
+ * the object
+ */
+geometry_msgs::Pose IronaGroup::getBasePreGraspPose() {
+  // Pose relative to object where base
+  // should reach before arm starts to
+  // reach the object
+  geometry_msgs::Pose baseOffsetPose;
+  baseOffsetPose.position.x = 0.5;
+  baseOffsetPose.orientation.z = 1.0;
+  baseOffsetPose.orientation.w = 0.0;
+  geometry_msgs::Pose basePreGraspPose;
+
+  // Transform from object to world
+  geometry_msgs::TransformStamped objectTransform;
+  objectTransform.transform.translation.x = objectPose_.position.x;
+  objectTransform.transform.translation.y = objectPose_.position.y;
+  objectTransform.transform.translation.z = objectPose_.position.z;
+  objectTransform.transform.rotation = objectPose_.orientation;
+  tf2::doTransform(baseOffsetPose, basePreGraspPose, objectTransform);
+  ROS_INFO("pregrasp position x: %f, y: %f, z: %f", basePreGraspPose.position.x,
+           basePreGraspPose.position.y, basePreGraspPose.position.z);
+  ROS_INFO("pregrasp orientation x: %f, y: %f, z: %f, w: %f",
+           basePreGraspPose.orientation.x, basePreGraspPose.orientation.y,
+           basePreGraspPose.orientation.z, basePreGraspPose.orientation.w);
+  return basePreGraspPose;
+}
