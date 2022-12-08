@@ -45,3 +45,17 @@ Detector::Detector() : call_count(0) {
   objectPose.orientation.w = 1.0;
   objectPoses.push_back(objectPose);
 }
+
+bool Detector::detectObject(irona::DetectObject::Request &req,
+                            irona::DetectObject::Response &res) {
+  geometry_msgs::Pose objectPose = objectPoses[call_count];
+  ROS_INFO("Object found at position x: %f, y: %f, z: %f",
+           objectPose.position.x, objectPose.position.y, objectPose.position.z);
+  ROS_INFO("Object found at orientation x: %f, y: %f, z: %f, w: %f",
+           objectPose.orientation.x, objectPose.orientation.y,
+           objectPose.orientation.z, objectPose.orientation.w);
+  res.status = true;
+  res.pose = objectPose;
+  call_count++;
+  return true;
+}
