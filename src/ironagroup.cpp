@@ -87,3 +87,32 @@ geometry_msgs::Pose IronaGroup::getBasePreGraspPose() {
            basePreGraspPose.orientation.z, basePreGraspPose.orientation.w);
   return basePreGraspPose;
 }
+
+/**
+ * @brief Function to move the base to a given pose
+ *
+ * @param basePose  //Target pose for the base
+ */
+void IronaGroup::moveBase(
+    const geometry_msgs::Pose &basePose) {  // ampersand left or right?
+  // what if never turns up?
+  while (!moveBaseClient_.waitForServer(ros::Duration(5.0))) {
+    ROS_INFO("Waiting for the move_base action server to come up");
+  }
+  move_base_msgs::MoveBaseGoal goal;
+  goal.target_pose.header.frame_id = "map";
+  goal.target_pose.header.stamp = ros::Time::now();
+
+  goal.target_pose.pose = basePose;
+  ROS_INFO("Sending goal");
+
+  moveBaseClient_.sendGoal(goal);
+  moveBaseClient_.waitForResult();
+
+  if (moveBaseClient_.getState() ==
+      actionlib::SimpleClientGoalState::SUCCEEDED) {
+    ROS_INFO("Hooray, the base moved");
+  } else {
+    ROS_INFO("The base failed to move for some reason");
+  }
+}
