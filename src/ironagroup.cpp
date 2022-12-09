@@ -57,6 +57,56 @@ IronaGroup::IronaGroup()
 }
 
 /**
+ * @brief Function to trigger the search behavior and detect the object
+ *
+ * @param goalPose
+ *
+ * @return true  // if object is found
+ * @return false  // if object is not found
+ */
+bool IronaGroup::searchObject() {
+  bool objectFound = false;
+  ros::Rate loop_rate(100);
+  geometry_msgs::Twist rotate;
+  rotate.angular.z = 0.017;
+  geometry_msgs::Twist stop;
+  double startTime, currentTime;
+  for (int i = 0; i < 360; i = i + 20) {
+    irona::DetectObject srv;
+    // srv.request.a = atoll(argv[1]);
+    if (detectObjectClient_.call(srv)) {
+      if (srv.response.status) {
+        // Store these values in appropriate types
+        // srv.response.label;
+        objectPose_ = srv.response.pose;
+        ROS_INFO("Object found at position x: %f, y: %f, z: %f",
+                 objectPose_.position.x, objectPose_.position.y,
+                 objectPose_.position.z);
+        ROS_INFO("Object found at orientation x: %f, y: %f, z: %f, w: %f",
+                 objectPose_.orientation.x, objectPose_.orientation.y,
+                 objectPose_.orientation.z, objectPose_.orientation.w);
+        objectFound = true;
+        return objectFound;
+      }
+    } else {
+      ROS_ERROR("Failed to call service detect object");
+    }
+    startTime = ros::Time::now().toSec();
+    currentTime = startTime;
+    while (currentTime - startTime < 20.0) {
+      basePublisher_.publish(rotate);
+      loop_rate.sleep();
+      currentTime = ros::Time::now().toSec();
+    }
+    for (int j = 0; j < 5; j++) {
+      basePublisher_.publish(stop);
+      loop_rate.sleep();
+    }
+  }
+  return objectFound;
+}
+
+/**
  * @brief Function to obtain the optimal base pose before the arm starts to
  * reach the object
  *
