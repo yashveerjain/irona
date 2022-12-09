@@ -184,3 +184,22 @@ void IronaGroup::moveBase(
     ROS_INFO("The base failed to move for some reason");
   }
 }
+
+void IronaGroup::removeModels(const std::string &id) {
+  if (!deleteClient.waitForExistence(ros::Duration(2.0))) {
+    // ROS_FATAL_STREAM("Unable to locate service '" <<
+    //   spawnClient.getService() << "'");
+    ROS_FATAL_STREAM("Unable to locate service");
+  }
+  /// Retrivieng gazebo_msgs necessary to delete model
+  gazebo_msgs::DeleteModelRequest deleteReq;
+  gazebo_msgs::DeleteModelResponse deleteResp;
+  deleteReq.model_name = id;
+  std::pair<gazebo_msgs::DeleteModelRequest, gazebo_msgs::DeleteModelResponse>
+      msgPair(deleteReq, deleteResp);
+  deleteMsg = msgPair;
+
+  /// Calling the service to delete model
+  deleteClient.call(deleteMsg.first, deleteMsg.second);
+  ROS_INFO_STREAM("Model Deleted - " << id);
+}
