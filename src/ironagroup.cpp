@@ -38,10 +38,6 @@
 #include <string>
 #include <vector>
 
-/**
- * @brief Construct a new Irona Group:: Irona Group object
- *
- */
 IronaGroup::IronaGroup()
     : moveBaseClient_("move_base", true),
       cleanRoomServer_(nh_, "cleanroom",
@@ -56,14 +52,48 @@ IronaGroup::IronaGroup()
   ROS_INFO("CLeanroom service done.....");
 }
 
-/**
- * @brief Function to trigger the search behavior and detect the object
- *
- * @param goalPose
- *
- * @return true  // if object is found
- * @return false  // if object is not found
- */
+void IronaGroup::cleanRoom(
+    const irona::CleanRoomGoalConstPtr &goal)
+{
+  std::vector<std::string> obj_ids = {"aruco_box_resize",
+                                      "aruco_box_resize_clone"};
+  bool success = true;
+  while (objectsFound_ < goal->objectCount) {
+    if (cleanRoomServer_.isPreemptRequested() || !ros::ok()) {
+      ROS_INFO(" Clean room service Preempted");
+      // set the action state to preempted
+      cleanRoomServer_.setPreempted();
+      success = false;
+      break;
+    }
+    if (searchObject()) {
+      geometry_msgs::Pose basePose = getBasePreGraspPose();
+      moveBase(basePose);
+      removeModels(obj_ids[objectsFound_]);
+      geometry_msgs::Pose homePose;
+      homePose.orientation.w = 1.0;
+      moveBase(homePose);
+      // geometry_msgs::Pose armPose = getArmPreGraspPose();
+      // moveArm(armPose);
+      objectsFound_++;
+    } else {
+      ROS_INFO("Couldn't find objects from current location!");
+      success = false;
+      break;
+    }
+    feedback_.objectsFound = objectsFound_;
+    // publish the feedback
+    cleanRoomServer_.publishFeedback(feedback_);
+  }
+
+  if (success) {
+    result_.success = success;
+    ROS_INFO("Task Succeeded!!!");
+    // set the action state to succeeded
+    cleanRoomServer_.setSucceeded(result_);
+  }
+}
+
 bool IronaGroup::searchObject() {
   bool objectFound = false;
   ros::Rate loop_rate(100);
@@ -106,13 +136,6 @@ bool IronaGroup::searchObject() {
   return objectFound;
 }
 
-/**
- * @brief Function to obtain the optimal base pose before the arm starts to
- * reach the object
- *
- * @return geometry_msgs::Pose // Optimial pose of the base for the arm to reach
- * the object
- */
 geometry_msgs::Pose IronaGroup::getBasePreGraspPose() {
   // Pose relative to object where base
   // should reach before arm starts to
@@ -138,11 +161,6 @@ geometry_msgs::Pose IronaGroup::getBasePreGraspPose() {
   return basePreGraspPose;
 }
 
-/**
- * @brief Function to move the base to a given pose
- *
- * @param basePose  //Target pose for the base
- */
 void IronaGroup::moveBase(
     const geometry_msgs::Pose &basePose) {  // ampersand left or right?
   // what if never turns up?
