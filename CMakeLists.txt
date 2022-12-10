@@ -47,6 +47,12 @@ catkin_package(
 CATKIN_DEPENDS message_runtime actionlib_msgs
 )
 
+if(CATKIN_ENABLE_TESTING AND ENABLE_COVERAGE_TESTING)
+  find_package(code_coverage REQUIRED)
+  # Add compiler flags for coverage instrumentation before defining any targets
+  APPEND_COVERAGE_COMPILER_FLAGS()
+endif()
+
 include_directories(
 include
 ${catkin_INCLUDE_DIRS}
@@ -68,3 +74,7 @@ add_dependencies(
   detector
   ${irona_EXPORTED_TARGETS}
 )
+
+if (CATKIN_ENABLE_TESTING)
+  find_package(rostest REQUIRED)
+endif()
