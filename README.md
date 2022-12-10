@@ -72,3 +72,6 @@ Click [here](https://docs.google.com/document/d/1MG7ZhsyHwAqyr5Dzbutqp6QzPwembGR
 
 ## Sprint 1 Review
 Click [here](https://docs.google.com/document/d/1Wv_h7vQbm0EJ9wbs9j15DGXhomWc1nVK1MhX5FHFCqk/edit?usp=sharing) to find sprint 1 review
+
+## Sprint 2 Planning
+Click [here](https://docs.google.com/document/d/1rXcNMr6ZjOhD-h_HUnBRr6CosEsc15x_xSZAXKRUjnw/edit?usp=sharing) to find sprint 2 planning
