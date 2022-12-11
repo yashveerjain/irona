@@ -64,6 +64,21 @@ source devel/setup.bash
 sudo apt install python3-coverage
 ```
 
+## Instructions to build
+```
+cd <path to catkin workspace>/src/
+git clone https://github.com/PavanMantripragada/irona.git
+cd ..
+catkin_make
+source devel/setup.bash
+```
+
+## Auxilary Information for Developers
+### Formating the code
+cd <path to repository>/irona
+clang-format -style=Google -i ./src/detectmain.cpp ./src/detectobject.cpp ./src/ironagroup.cpp ./src/ironamain.cpp ./include/irona/detector.hpp ./include/irona/ironagroup.hpp
+
+
 ## Product Backlog
 Click [here](https://docs.google.com/spreadsheets/d/1pMMDSweZWHyVE6unGnJGsqK0Os3B_QaF1Y-Y41Slw4U/edit#gid=1860513107)
 
