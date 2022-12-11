@@ -1,0 +1,5 @@
+int32 objectCount
+---
+bool success
+---
+int32 objectsFound
