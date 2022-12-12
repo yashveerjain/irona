@@ -1,0 +1,59 @@
+<launch>
+  <!-- Arguments -->
+  <arg name="model" default="waffle_pi" doc="model type [burger, waffle, waffle_pi]"/>
+  <arg name="map_file" default="$(find irona)/maps/map.yaml"/>
+  <arg name="open_rviz" default="true"/>
+  <arg name="move_forward_only" default="false"/>
+
+  <!-- Turtlebot3 -->
+  <arg name="urdf_file" default="$(find xacro)/xacro --inorder '$(find turtlebot3_manipulation_description)/urdf/turtlebot3_manipulation_robot.urdf.xacro'" />
+  <param name="robot_description" command="$(arg urdf_file)" />
+
+  <node pkg="robot_state_publisher" type="robot_state_publisher" name="robot_state_publisher">
+    <param name="publish_frequency" type="double" value="50.0" />
+  </node>
+
+  <node pkg="laser_filters" type="scan_to_scan_filter_chain" name="laser_filter" output="screen" >
+    <rosparam command="load" file="$(find turtlebot3_manipulation_slam)/config/scan_data_filter.yaml" />
+  </node>  
+
+  <!-- Map server -->
+  <node pkg="map_server" name="map_server" type="map_server" args="$(arg map_file)"/>
+
+  <!-- AMCL -->
+  <include file="$(find turtlebot3_manipulation_navigation)/launch/amcl.launch">
+    <arg name="initial_pose_x"  value="0.0" />
+    <arg name="initial_pose_y"  value="0.0" />
+    <arg name="initial_pose_a"  value="1.5708" />
+  </include>
+
+  <!-- move_base -->
+  <include file="$(find turtlebot3_manipulation_navigation)/launch/move_base.launch">
+    <arg name="model" value="$(arg model)" />
+    <arg name="move_forward_only" value="$(arg move_forward_only)"/>
+  </include>
+
+  <!-- Rectified image -->
+  <node name="rectify_image" pkg="image_proc" type="image_proc" output="screen">
+      <remap from="image_raw" to="camera/rgb/image_raw" />
+      <remap from="camera_info" to="camera/rgb/camera_info" />
+  </node>
+
+<node name="aruco_detect" pkg="aruco_detect" type="aruco_detect" output="screen">
+    <param name="fiducial_len" value="0.2" />
+    <param name="dictionary" value="10" />
+    <param name="publish_images" value="true" />
+    <param name="publish_fiducial_tf" value="false" />
+    <remap from="camera" to="image_rect_color" />
+    <remap from="camera_info" to="camera/rgb/camera_info" />
+    <!-- <remap from="/fiducial_images" to="/$(arg front_camera_prefix)$(arg camera_name)/fiducial_images" />
+    <remap from="/fiducial_transforms" to="/$(arg front_camera_prefix)$(arg camera_name)/fiducial_transforms" />
+    <remap from="/fiducial_vertices" to="/$(arg front_camera_prefix)$(arg camera_name)/fiducial_vertices" /> -->
+  </node>
+
+  <!-- rviz -->
+  <group if="$(arg open_rviz)"> 
+    <node pkg="rviz" type="rviz" name="rviz" required="true"
+          args="-d $(find turtlebot3_manipulation_navigation)/rviz/turtlebot3_manipulation_navigation.rviz" output="screen"/>
+  </group>
+</launch>

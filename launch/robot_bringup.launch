@@ -1,0 +1,6 @@
+<launch>
+    <include file="$(find irona)/launch/custom_manipulation_gazebo.launch"/>
+    <include file="$(find irona)/launch/custom_navigation.launch"/>
+    <node pkg="irona" type="detector" name="my_detector"/>
+    <node pkg="irona" type="ironagroup" name="my_irona"/>
+</launch>
