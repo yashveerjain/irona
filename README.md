@@ -21,11 +21,11 @@ room floor to detect toys lying around, pick them up, and collect them in a bin.
 
 ## UML Class Diagram 
 
-![](UML/initial/class_diagram.png)
+![](UML/revised/cl_dia.png)
 
 ## UML Activity Diagram 
 
-![](UML/initial/activity_diagram.png)
+![](UML/revised/activity_dia.png)
 
 ## Dependencies
 * Install OpenCV version = 4.2
@@ -90,3 +90,6 @@ Click [here](https://docs.google.com/document/d/1Wv_h7vQbm0EJ9wbs9j15DGXhomWc1nV
 
 ## Sprint 2 Planning
 Click [here](https://docs.google.com/document/d/1rXcNMr6ZjOhD-h_HUnBRr6CosEsc15x_xSZAXKRUjnw/edit?usp=sharing) to find sprint 2 planning
+
+## Sprint 2 Review
+Click [here](https://docs.google.com/document/d/1vL9f8UbFCyEK2pT7uqZMs_aatZJEmN-XreymB_0AEf8/edit?usp=sharing) to find sprint 2 review
