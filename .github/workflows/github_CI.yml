@@ -37,22 +37,28 @@ jobs:
       - uses: actions/checkout@v3
         with:
           path: wworkspace/src/my_package
+      # name: Create dependency workspace
+      #   run: |
+      #        export dir_path=${{github.workspace}}
+      #        cd ~
+      #        mkdir -p dep_ws/src
+      #        cd dep_ws/src
       - uses: betwo/github-setup-catkin@v1.1.1
         with:
           ros-version: 'noetic'
-          # workspace: '$GITHUB_WORKSPACE'
+          workspace: $HOME/cat_ws
       # Install OpenCV
       - name: install opencv 
         run: |   
             sudo apt-get install -y libopencv-dev 
             sudo apt-get install -y libopencv-contrib-dev
-      - name: install ros
-        run: |
-            wget -c https://raw.githubusercontent.com/qboticslabs/ros_install_noetic/master/ros_install_noetic.sh && chmod +x ./ros_install_noetic.sh && ./ros_install_noetic.sh
-            source /opt/ros/noetic/setup.bash
-            sudo apt install -y python3-rosdep python3-rosinstall python3-rosinstall-generator python3-wstool build-essential
-            sudo rosdep init
-            rosdep update
+      # - name: install ros
+      #   run: |
+      #       wget -c https://raw.githubusercontent.com/qboticslabs/ros_install_noetic/master/ros_install_noetic.sh && chmod +x ./ros_install_noetic.sh && ./ros_install_noetic.sh
+      #       source /opt/ros/noetic/setup.bash
+      #       sudo apt install -y python3-rosdep python3-rosinstall python3-rosinstall-generator python3-wstool build-essential
+      #       sudo rosdep init
+      #       rosdep update
       # - name: turtlebot3 dependencies
       #   run: |
             # sudo apt install -y ros-noetic-ros-control* ros-noetic-control* ros-noetic-moveit*
@@ -89,13 +95,13 @@ jobs:
              catkin_make
              source devel/setup.bash
 
-      - name: Create dependency workspace
-        run: |
-             cd ~
-             mkdir -p dep_ws/src
-             cd dep_ws/src
-             cp -r dir_path .
-             cd ..        
+      # - name: Create dependency workspace
+      #   run: |
+      #        cd ~
+      #        mkdir -p dep_ws/src
+      #        cd dep_ws/src
+      #        cp -r dir_path .
+      #        cd ..        
       
       - name: catkin make 
         run: |
