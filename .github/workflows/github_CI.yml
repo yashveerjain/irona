@@ -75,6 +75,10 @@ jobs:
       - name: Install packages
         run: sudo apt install -y lcov
 
+      - name: Install catkin-tools
+        run: |
+          sudo apt install python3-catkin-tools python3-osrf-pycommon -y
+
       - name: Create dependency workspace
         run: |
             cd $HOME/cat_ws/src/
