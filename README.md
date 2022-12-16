@@ -21,11 +21,11 @@ room floor to detect toys lying around, pick them up, and collect them in a bin.
 
 ## UML Class Diagram 
 
-![](UML/initial/class_diagram.png)
+![](UML/revised/cl_dia.png)
 
 ## UML Activity Diagram 
 
-![](UML/initial/activity_diagram.png)
+![](UML/revised/activity_dia.png)
 
 ## Dependencies
 * Install OpenCV version = 4.2
@@ -72,12 +72,59 @@ cd ..
 catkin_make
 source devel/setup.bash
 ```
+## Instructions to test and coverage
+```
+cd <path to catkin workspace>/
+catkin_make
+source devel/setup.bash
+catkin_make -DCATKIN_ENABLE_TESTING=ON -DENABLE_COVERAGE_TESTING=ON -DCMAKE_BUILD_TYPE=Debug irona_coverage_report
+```
+Please check `results/coverage_report.txt` for coverage report
+ 
+## Instructions to run
+After building and sourcing
+```
+roslaunch irona robot_bringup.launch
+```
+In another terminal, source workspace and run the following command
+```
+rostopic pub /cleanroom/goal irona/CleanRoomActionGoal "header:
+  seq: 0
+  stamp:
+    secs: 0
+    nsecs: 0
+  frame_id: ''
+goal_id:
+  stamp:
+    secs: 0
+    nsecs: 0
+  id: ''
+goal:
+  objectCount: 2"   
+```
 
 ## Auxilary Information for Developers
 ### Formating the code
+```
 cd <path to repository>/irona
 clang-format -style=Google -i ./src/detectmain.cpp ./src/detectobject.cpp ./src/ironagroup.cpp ./src/ironamain.cpp ./include/irona/detector.hpp ./include/irona/ironagroup.hpp
+```
+### Running cppcheck
+```
+cd <path to repository>/turtlebot_walker
+cppcheck --enable=all --std=c++11 -I include/ --suppress=missingInclude $( find . -name \*.hpp -or -name *.cpp | grep -vE -e "^./build/" -e "^./vendor/")
+```
 
+### Running cpplint
+```
+cd <path to repository>/turtlebot_walker
+cpplint --filter=-build/c++11,+build/c++17,-build/namespaces,-build/include_order $( find . -name \*.hpp -or -name \*.cpp | grep -vE -e "^./build/" -e "^./vendor/" )
+```
+### Generating Documentation
+```
+cd <path to repository>/docs
+doxygen Doxyfile
+```
 
 ## Product Backlog
 Click [here](https://docs.google.com/spreadsheets/d/1pMMDSweZWHyVE6unGnJGsqK0Os3B_QaF1Y-Y41Slw4U/edit#gid=1860513107)
@@ -90,3 +137,12 @@ Click [here](https://docs.google.com/document/d/1Wv_h7vQbm0EJ9wbs9j15DGXhomWc1nV
 
 ## Sprint 2 Planning
 Click [here](https://docs.google.com/document/d/1rXcNMr6ZjOhD-h_HUnBRr6CosEsc15x_xSZAXKRUjnw/edit?usp=sharing) to find sprint 2 planning
+
+## Sprint 2 Review
+Click [here](https://docs.google.com/document/d/1vL9f8UbFCyEK2pT7uqZMs_aatZJEmN-XreymB_0AEf8/edit?usp=sharing) to find sprint 2 review
+
+## Presentation
+Click [here](https://docs.google.com/presentation/d/1Puwuj56ZnzYekf0M9gkcIM8O_EKS1f3D4yBwn63jECg/edit?usp=sharing) to find presentation
+
+## Video
+Click [here](https://drive.google.com/file/d/1HQ4nxvMEjOk0q7O0tkBDW-nLC0AQ5b5_/view?usp=share_link) to find video

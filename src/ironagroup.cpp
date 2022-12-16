@@ -53,8 +53,7 @@ IronaGroup::IronaGroup()
 }
 
 void IronaGroup::cleanRoom(
-    const irona::CleanRoomGoalConstPtr &goal)
-{
+    const irona::CleanRoomGoalConstPtr &goal) {
   std::vector<std::string> obj_ids = {"aruco_box_resize",
                                       "aruco_box_resize_clone"};
   bool success = true;
