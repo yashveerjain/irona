@@ -38,9 +38,9 @@ jobs:
         with:
           path: wworkspace/src/my_package
       - name: Create dependency workspace
-          run: |
-              export dir_path=${{github.workspace}}
-              mkdir -p $HOME/cat_ws/src
+        run: |
+            export dir_path=${{github.workspace}}
+            mkdir -p $HOME/cat_ws/src
       - uses: betwo/github-setup-catkin@v1.3.0
         with:
           ros-version: 'noetic'
