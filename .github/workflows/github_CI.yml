@@ -34,7 +34,7 @@ jobs:
     
     steps:
       # We want to use GitHub CI checkout version 3 for checking out the branch
-      - uses: actions/checkout@v3
+      - uses:   @v3
         with:
           path: wworkspace/src/my_package
       # name: Create dependency workspace
@@ -43,8 +43,9 @@ jobs:
       #        cd ~
       #        mkdir -p dep_ws/src
       #        cd dep_ws/src
-      - uses: betwo/github-setup-catkin@v1.1.1
+      - uses: betwo/github-setup-catkin@v1.3.0
         with:
+          # ACTIONS_ALLOW_UNSECURE_COMMANDS: true
           ros-version: 'noetic'
           workspace: $HOME/cat_ws
       # Install OpenCV
