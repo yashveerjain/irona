@@ -75,9 +75,26 @@ source devel/setup.bash
 
 ## Auxilary Information for Developers
 ### Formating the code
+```
 cd <path to repository>/irona
 clang-format -style=Google -i ./src/detectmain.cpp ./src/detectobject.cpp ./src/ironagroup.cpp ./src/ironamain.cpp ./include/irona/detector.hpp ./include/irona/ironagroup.hpp
+```
+### Running cppcheck
+```
+cd <path to repository>/turtlebot_walker
+cppcheck --enable=all --std=c++11 -I include/ --suppress=missingInclude $( find . -name \*.hpp -or -name *.cpp | grep -vE -e "^./build/" -e "^./vendor/")
+```
 
+### Running cpplint
+```
+cd <path to repository>/turtlebot_walker
+cpplint --filter=-build/c++11,+build/c++17,-build/namespaces,-build/include_order $( find . -name \*.hpp -or -name \*.cpp | grep -vE -e "^./build/" -e "^./vendor/" )
+```
+### Generating Documentation
+```
+cd <path to repository>/docs
+doxygen Doxyfile
+```
 
 ## Product Backlog
 Click [here](https://docs.google.com/spreadsheets/d/1pMMDSweZWHyVE6unGnJGsqK0Os3B_QaF1Y-Y41Slw4U/edit#gid=1860513107)

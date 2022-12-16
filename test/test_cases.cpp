@@ -28,26 +28,25 @@
  * @copyright Copyright (c) 2022
  *
  **/
+#include <geometry_msgs/Pose.h>
 #include <gtest/gtest.h>
 #include <vector>
 #include "irona/ironagroup.hpp"
 #include "irona/detector.hpp"
-#include <geometry_msgs/Pose.h>
 
 TEST(detector_object, DetectObject) {
     Detector my_detector;
     irona::DetectObject srv;
     irona::DetectObject::Request req;
     irona::DetectObject::Response res;
-    srv.request.test = 2; // just to intitiate service
-    EXPECT_EQ(my_detector.objectPoses.size(),2);
+    srv.request.test = 2;  // just to intitiate service
+    EXPECT_EQ(my_detector.objectPoses.size(), 2);
 
-    EXPECT_TRUE(my_detector.detectObject(req,res));
+    EXPECT_TRUE(my_detector.detectObject(req, res));
     EXPECT_TRUE(res.status);
 
     // Test case check if image is empty
-    //subscribing to the camera topic
-
+    //  subscribing to the camera topic
 }
 
 TEST(IronaGroup, getBasePreGraspPose) {

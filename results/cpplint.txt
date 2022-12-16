@@ -1,0 +1,11 @@
+./include/irona/detector.hpp:58:  Is this a non-const reference? If so, make const or use a pointer: irona::DetectObject::Request &req  [runtime/references] [2]
+./include/irona/detector.hpp:59:  Is this a non-const reference? If so, make const or use a pointer: irona::DetectObject::Response &res  [runtime/references] [2]
+Done processing ./include/irona/detector.hpp
+Done processing ./include/irona/ironagroup.hpp
+Done processing ./src/detectmain.cpp
+Done processing ./src/detectobject.cpp
+Done processing ./src/ironagroup.cpp
+Done processing ./src/ironamain.cpp
+Done processing ./test/main.cpp
+Done processing ./test/test_cases.cpp
+Total errors found: 2
