@@ -81,7 +81,6 @@ jobs:
              git clone -b noetic-devel https://github.com/ROBOTIS-GIT/open_manipulator.git
              git clone -b noetic-devel https://github.com/ROBOTIS-GIT/open_manipulator_msgs.git
              git clone -b noetic-devel https://github.com/ROBOTIS-GIT/open_manipulator_simulations.git
-             git clone https://github.com/ROBOTIS-GIT/open_manipulator_dependencies.git
              git clone https://github.com/ROBOTIS-GIT/turtlebot3_manipulation.git
              git clone https://github.com/ROBOTIS-GIT/turtlebot3_manipulation_simulations.git
              git clone https://github.com/ROBOTIS-GIT/open_manipulator_dependencies.git
@@ -91,16 +90,15 @@ jobs:
              catkin_make
              source devel/setup.bash
 
-      # - name: Create dependency workspace
-      #   run: |
-      #        cd ~
-      #        mkdir -p dep_ws/src
-      #        cd dep_ws/src
-      #        cp -r dir_path .
-      #        cd ..        
+      - name: Create dependency workspace
+        run: |
+             cd $HOME/cat_ws/src
+             cp -r dir_path .
+             cd ..        
       
       - name: catkin make 
         run: |
+              cd $HOME/cat_ws
               catkin_make
               source devel/setup.bash
               catkin_make -DCATKIN_ENABLE_TESTING=ON -DENABLE_COVERAGE_TESTING=ON -DCMAKE_BUILD_TYPE=Debug irona_coverage_report
