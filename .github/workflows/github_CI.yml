@@ -93,24 +93,24 @@ jobs:
              cp -r ${{github.workspace}} .
              cd .. 
 
-       - name: Create dependency workspace
+      - name: Create dependency workspace
         run: |
-            cd $HOME/cat_ws/src/
-            git clone https://github.com/mikeferguson/code_coverage.git
-            cd ..
+          cd $HOME/cat_ws/src/
+          git clone https://github.com/mikeferguson/code_coverage.git
+          cd ..
 
-        - name: Create dependency workspace
-          run: |
-              cd $HOME/cat_ws/src
-              echo ${{github.workspace}}
-              cp -r ${{github.workspace}} .
-              cd ..        
-        
-        - name: catkin make 
-          run: |
-              catkin config --cmake-args -DENABLE_COVERAGE_TESTING=ON -DCMAKE_BUILD_TYPE=Debug
-              catkin build
-              catkin build irona -v --no-deps --catkin-make-args irona_coverage_report
+      - name: Create dependency workspace
+        run: |
+            cd $HOME/cat_ws/src
+            echo ${{github.workspace}}
+            cp -r ${{github.workspace}} .
+            cd ..        
+      
+      - name: catkin make 
+        run: |
+            catkin config --cmake-args -DENABLE_COVERAGE_TESTING=ON -DCMAKE_BUILD_TYPE=Debug
+            catkin build
+            catkin build irona -v --no-deps --catkin-make-args irona_coverage_report
 
       # - name: Unit tests
       #   run: |
@@ -154,18 +154,6 @@ jobs:
       # - name: Configure Coverage CMake 
       #   run: cmake -D COVERAGE=ON -D CMAKE_BUILD_TYPE=Debug -B ${{github.workspace}}/build 
       
-      # # Compile and executables
-      # - name: Build Coverage
-      #   working-directory: ${{github.workspace}}/build
-      #   run: make
-
-      # Run test suite and compute code coverage
-      # - name: Run Test Coverage
-      #   working-directory: ${{github.workspace}}/build
-      #   run: make code_coverage
-      
-      # - name: Codecov
-      #   uses: codecov/codecov-action@v3.1.1
 
       - name: Upload result to Coveralls.io
         uses: coverallsapp/github-action@1.1.3
