@@ -37,15 +37,12 @@ jobs:
       - uses: actions/checkout@v3
         with:
           path: wworkspace/src/my_package
-      # name: Create dependency workspace
-      #   run: |
-      #        export dir_path=${{github.workspace}}
-      #        cd ~
-      #        mkdir -p dep_ws/src
-      #        cd dep_ws/src
+      name: Create dependency workspace
+        run: |
+             export dir_path=${{github.workspace}}
+             mkdir -p $HOME/cat_ws/src
       - uses: betwo/github-setup-catkin@v1.3.0
         with:
-          # ACTIONS _ALLOW_UNSECURE_COMMANDS: true
           ros-version: 'noetic'
           workspace: $HOME/cat_ws
       # Install OpenCV
@@ -79,10 +76,8 @@ jobs:
 
       - name: Create dependency workspace
         run: |
-             export dir_path=${{github.workspace}}
-             cd ~
-             mkdir -p dep_ws/src
-             cd dep_ws/src
+             
+             cd $HOME/cat_ws/src/
              git clone -b noetic-devel https://github.com/ROBOTIS-GIT/open_manipulator.git
              git clone -b noetic-devel https://github.com/ROBOTIS-GIT/open_manipulator_msgs.git
              git clone -b noetic-devel https://github.com/ROBOTIS-GIT/open_manipulator_simulations.git
