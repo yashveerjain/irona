@@ -79,12 +79,12 @@ jobs:
         run: |
           sudo apt install python3-catkin-tools python3-osrf-pycommon -y
 
-      - name: Create dependency workspace
-        run: |
-            cd $HOME/cat_ws/src/
-            git clone https://github.com/mikeferguson/code_coverage.git
-            cd ..
-            catkin_make_isolated
+      # - name: Create dependency workspace
+      #   run: |
+      #       cd $HOME/cat_ws/src/
+      #       git clone https://github.com/mikeferguson/code_coverage.git
+      #       cd ..
+      #       catkin_make_isolated
 
       - name: Create dependency workspace
         run: |
@@ -96,6 +96,7 @@ jobs:
 
       - name: Unit tests
         run: |
+          cd $HOME/cat_ws/src
           echo "---------------------------- PWD: $PWD"
           echo "----------------------------PWD LS: $PWD/src/$(ls)"
           echo "----------------------------PWD LS: $PWD/src/$(ls)"
