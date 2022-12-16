@@ -110,3 +110,6 @@ Click [here](https://docs.google.com/document/d/1rXcNMr6ZjOhD-h_HUnBRr6CosEsc15x
 
 ## Sprint 2 Review
 Click [here](https://docs.google.com/document/d/1vL9f8UbFCyEK2pT7uqZMs_aatZJEmN-XreymB_0AEf8/edit?usp=sharing) to find sprint 2 review
+
+## Presentation
+Click [here](https://docs.google.com/presentation/d/1Puwuj56ZnzYekf0M9gkcIM8O_EKS1f3D4yBwn63jECg/edit?usp=sharing) to find presentation
