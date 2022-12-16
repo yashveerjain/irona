@@ -110,6 +110,7 @@ jobs:
 
       - name: Configure Codecov
         run: |
+          cd $HOME/cat_ws/
           echo "---------------------------- PWD: $PWD"
           echo "----------------------------PWD LS: $PWD/$(ls)"
           lcov --directory . --capture --output-file coverage.info
