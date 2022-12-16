@@ -72,6 +72,36 @@ cd ..
 catkin_make
 source devel/setup.bash
 ```
+## Instructions to test and coverage
+```
+cd <path to catkin workspace>/
+catkin_make
+source devel/setup.bash
+catkin_make -DCATKIN_ENABLE_TESTING=ON -DENABLE_COVERAGE_TESTING=ON -DCMAKE_BUILD_TYPE=Debug irona_coverage_report
+```
+Please check `results/coverage_report.txt` for coverage report
+ 
+## Instructions to run
+After building and sourcing
+```
+roslaunch irona robot_bringup.launch
+```
+In another terminal, source workspace and run the following command
+```
+rostopic pub /cleanroom/goal irona/CleanRoomActionGoal "header:
+  seq: 0
+  stamp:
+    secs: 0
+    nsecs: 0
+  frame_id: ''
+goal_id:
+  stamp:
+    secs: 0
+    nsecs: 0
+  id: ''
+goal:
+  objectCount: 2"   
+```
 
 ## Auxilary Information for Developers
 ### Formating the code
