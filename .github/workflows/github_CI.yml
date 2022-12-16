@@ -35,7 +35,12 @@ jobs:
     steps:
       # We want to use GitHub CI checkout version 3 for checking out the branch
       - uses: actions/checkout@v3
-
+        with:
+          path: wworkspace/src/my_package
+      - uses: betwo/github-setup-catkin@v1.1.1
+        with:
+          ros-version: 'noetic'
+          # workspace: '$GITHUB_WORKSPACE'
       # Install OpenCV
       - name: install opencv 
         run: |   
@@ -48,18 +53,18 @@ jobs:
             sudo apt install -y python3-rosdep python3-rosinstall python3-rosinstall-generator python3-wstool build-essential
             sudo rosdep init
             rosdep update
-      - name: turtlebot3 dependencies
-        run: |
-            sudo apt install -y ros-noetic-ros-control* ros-noetic-control* ros-noetic-moveit*
-            sudo apt install -y ros-noetic-ros-controllers ros-noetic-gazebo* ros-noetic-industrial-core
-            sudo apt install -y ros-noetic-dynamixel-sdk ros-noetic-dynamixel-workbench* 
-            sudo apt install -y ros-noetic-robotis-manipulator
-            sudo apt install -y ros-noetic-turtlebot3-msgs ros-noetic-turtlebot3
-            sudo apt install -y ros-noetic-vision-msgs
-            sudo apt install -y ros-noetic-laser-proc ros-noetic-rgbd-launch ros-noetic-map-server \
-            ros-noetic-move-base ros-noetic-urdf ros-noetic-xacro \
-            ros-noetic-compressed-image-transport ros-noetic-rqt* ros-noetic-rviz \
-            ros-noetic-gmapping ros-noetic-navigation ros-noetic-interactive-markers
+      # - name: turtlebot3 dependencies
+      #   run: |
+            # sudo apt install -y ros-noetic-ros-control* ros-noetic-control* ros-noetic-moveit*
+            # sudo apt install -y ros-noetic-ros-controllers ros-noetic-gazebo* ros-noetic-industrial-core
+            # sudo apt install -y ros-noetic-dynamixel-sdk ros-noetic-dynamixel-workbench* 
+            # sudo apt install -y ros-noetic-robotis-manipulator
+            # sudo apt install -y ros-noetic-turtlebot3-msgs ros-noetic-turtlebot3
+            # sudo apt install -y ros-noetic-vision-msgs
+            # sudo apt install -y ros-noetic-laser-proc ros-noetic-rgbd-launch ros-noetic-map-server \
+            # ros-noetic-move-base ros-noetic-urdf ros-noetic-xacro \
+            # ros-noetic-compressed-image-transport ros-noetic-rqt* ros-noetic-rviz \
+            # ros-noetic-gmapping ros-noetic-navigation ros-noetic-interactive-markers
 
       # Install some system pacakges
       - name: Install packages
