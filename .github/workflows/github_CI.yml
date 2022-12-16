@@ -80,7 +80,6 @@ jobs:
             git clone https://github.com/mikeferguson/code_coverage.git
             cd ..
             catkin_make_isolated
-            source devel/setup.bash
 
       - name: Create dependency workspace
         run: |
@@ -92,7 +91,6 @@ jobs:
         run: |
               cd $HOME/cat_ws
               catkin_make_isolated
-              source devel/setup.bash
               catkin_make_isolated -DCATKIN_ENABLE_TESTING=ON -DENABLE_COVERAGE_TESTING=ON -DCMAKE_BUILD_TYPE=Debug irona_coverage_report
 
       # # Run CMake to setup compilation flags
