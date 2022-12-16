@@ -53,6 +53,7 @@ jobs:
       - name: install ros
         run: |
             sudo apt-get install ros-noetic-tf2-geometry-msgs
+            sudo apt-get install ros-noetic-move-base-msgs
       # - name: turtlebot3 dependencies
       #   run: |
             # sudo apt install -y ros-noetic-ros-control* ros-noetic-control* ros-noetic-moveit*
