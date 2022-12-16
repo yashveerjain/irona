@@ -76,18 +76,11 @@ jobs:
 
       - name: Create dependency workspace
         run: |
-             
-             cd $HOME/cat_ws/src/
-            #  git clone -b noetic-devel https://github.com/ROBOTIS-GIT/open_manipulator.git
-            #  git clone -b noetic-devel https://github.com/ROBOTIS-GIT/open_manipulator_msgs.git
-            #  git clone -b noetic-devel https://github.com/ROBOTIS-GIT/open_manipulator_simulations.git
-            #  git clone https://github.com/ROBOTIS-GIT/turtlebot3_manipulation.git
-            #  git clone https://github.com/ROBOTIS-GIT/turtlebot3_manipulation_simulations.git
-            #  git clone https://github.com/ROBOTIS-GIT/open_manipulator_dependencies.git
-             git clone https://github.com/mikeferguson/code_coverage.git
-             cd ..
-             catkin_make_isolated
-             source devel/setup.bash
+            cd $HOME/cat_ws/src/
+            git clone https://github.com/mikeferguson/code_coverage.git
+            cd ..
+            catkin_make_isolated
+            source devel/setup.bash
 
       - name: Create dependency workspace
         run: |
