@@ -1,0 +1,180 @@
+Base path: /home/pavan/src/catkin_ws
+Source space: /home/pavan/src/catkin_ws/src
+Build space: /home/pavan/src/catkin_ws/build
+Devel space: /home/pavan/src/catkin_ws/devel
+Install space: /home/pavan/src/catkin_ws/install
+####
+#### Running command: "cmake /home/pavan/src/catkin_ws/src -DCATKIN_ENABLE_TESTING=ON -DENABLE_COVERAGE_TESTING=ON -DCMAKE_BUILD_TYPE=Debug -DCATKIN_DEVEL_PREFIX=/home/pavan/src/catkin_ws/devel -DCMAKE_INSTALL_PREFIX=/home/pavan/src/catkin_ws/install -G Unix Makefiles" in "/home/pavan/src/catkin_ws/build"
+####
+-- Using CATKIN_DEVEL_PREFIX: /home/pavan/src/catkin_ws/devel
+-- Using CMAKE_PREFIX_PATH: /home/pavan/src/catkin_ws/devel;/home/pavan/src/turtlebot_ws/devel;/opt/ros/noetic
+-- This workspace overlays: /home/pavan/src/catkin_ws/devel;/home/pavan/src/turtlebot_ws/devel;/opt/ros/noetic
+-- Found PythonInterp: /usr/bin/python3 (found suitable version "3.8.10", minimum required is "3") 
+-- Using PYTHON_EXECUTABLE: /usr/bin/python3
+-- Using Debian Python package layout
+-- Using empy: /usr/lib/python3/dist-packages/em.py
+-- Using CATKIN_ENABLE_TESTING: ON
+-- Call enable_testing()
+-- Using CATKIN_TEST_RESULTS_DIR: /home/pavan/src/catkin_ws/build/test_results
+-- Forcing gtest/gmock from source, though one was otherwise available.
+-- Found gtest sources under '/usr/src/googletest': gtests will be built
+-- Found gmock sources under '/usr/src/googletest': gmock will be built
+-- Found PythonInterp: /usr/bin/python3 (found version "3.8.10") 
+-- Using Python nosetests: /usr/bin/nosetests3
+-- catkin 0.8.10
+-- BUILD_SHARED_LIBS is on
+-- BUILD_SHARED_LIBS is on
+-- ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+-- ~~  traversing 1 packages in topological order:
+-- ~~  - irona
+-- ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+-- +++ processing catkin package: 'irona'
+-- ==> add_subdirectory(irona)
+-- Using these message generators: gencpp;geneus;genlisp;gennodejs;genpy
+-- Generating .msg files for action irona/CleanRoom /home/pavan/src/catkin_ws/src/irona/action/CleanRoom.action
+-- irona: 7 messages, 1 services
+-- Appending code coverage compiler flags: -g -O0 --coverage -fprofile-arcs -ftest-coverage
+-- Configuring done
+-- Generating done
+-- Build files have been written to: /home/pavan/src/catkin_ws/build
+####
+#### Running command: "make irona_coverage_report -j4 -l4" in "/home/pavan/src/catkin_ws/build"
+####
+[ 33%] Resetting CPP code coverage counters to zero.
+[ 66%] Resetting PYTHON code coverage counters to zero.
+Removing test result files from '/home/pavan/src/catkin_ws/build/test_results/irona'
+- removing '/home/pavan/src/catkin_ws/build/test_results/irona/rostest-test_irona_test.xml'
+[ 66%] Built target clean_test_results_irona
+Deleting all .da files in . and subdirectories
+Done.
+[ 66%] Built target irona_coverage_report_cleanup_cpp
+[ 66%] Built target irona_coverage_report_cleanup_py
+[ 66%] Built target tests
+-- run_tests.py: execute commands
+  /usr/bin/python3 /opt/ros/noetic/share/rostest/cmake/../../../bin/rostest --pkgdir=/home/pavan/src/catkin_ws/src/irona --package=irona --results-filename test_irona_test.xml --results-base-dir "/home/pavan/src/catkin_ws/build/test_results" /home/pavan/src/catkin_ws/src/irona/test/irona_test.test 
+... logging to /home/pavan/.ros/log/rostest-pc-22180.log
+[ROSUNIT] Outputting test results to /home/pavan/src/catkin_ws/build/test_results/irona/rostest-test_irona_test.xml
+[Testcase: testmy_tests] ... ok
+
+[ROSTEST]-----------------------------------------------------------------------
+
+[irona.rosunit-my_tests/DetectObject][passed]
+[irona.rosunit-my_tests/getBasePreGraspPose][passed]
+
+SUMMARY
+ * RESULT: SUCCESS
+ * TESTS: 2
+ * ERRORS: 0
+ * FAILURES: 0
+
+rostest log file is in /home/pavan/.ros/log/rostest-pc-22180.log
+-- run_tests.py: verify result "/home/pavan/src/catkin_ws/build/test_results/irona/rostest-test_irona_test.xml"
+[ 66%] Built target _run_tests_irona_rostest_test_irona_test.test
+[ 66%] Built target _run_tests_irona_rostest
+[ 66%] Built target _run_tests_irona
+cp: cannot stat '/home/pavan/src/catkin_ws/build/irona/.coverage*': No such file or directory
+WARNING: No python coverage!
+Capturing coverage data from .
+No data to combine
+WARNING: No python coverage to combine!
+Found gcov version: 9.4.0
+Using intermediate gcov format
+Scanning . for .gcno files ...
+Found 8 graph files in .
+Processing ironagroup.dir/src/ironamain.cpp.gcno
+Name    Stmts   Miss  Cover
+---------------------------
+No data to report.
+WARNING: no python report to output
+No data to report.
+WARNING: No python xml to output
+No data to report.
+WARNING: No python html to output
+[ 66%] Built target irona_coverage_report_py
+Processing ironagroup.dir/src/ironagroup.cpp.gcno
+Processing detector.dir/src/detectobject.cpp.gcno
+Processing detector.dir/src/detectmain.cpp.gcno
+Processing irona-test.dir/src/detectobject.cpp.gcno
+Processing irona-test.dir/src/ironagroup.cpp.gcno
+Processing irona-test.dir/test/test_cases.cpp.gcno
+Processing irona-test.dir/test/main.cpp.gcno
+Finished .info-file creation
+Capturing coverage data from .
+Found gcov version: 9.4.0
+Using intermediate gcov format
+Scanning . for .gcda files ...
+Found 8 data files in .
+Processing ironagroup.dir/src/ironagroup.cpp.gcda
+Processing ironagroup.dir/src/ironamain.cpp.gcda
+Processing detector.dir/src/detectmain.cpp.gcda
+Processing detector.dir/src/detectobject.cpp.gcda
+Processing irona-test.dir/src/ironagroup.cpp.gcda
+Processing irona-test.dir/src/detectobject.cpp.gcda
+Processing irona-test.dir/test/test_cases.cpp.gcda
+Processing irona-test.dir/test/main.cpp.gcda
+Finished .info-file creation
+Combining tracefiles.
+Reading tracefile /home/pavan/src/catkin_ws/build/irona/irona_coverage_report.base
+Reading tracefile /home/pavan/src/catkin_ws/build/irona/irona_coverage_report.info
+Writing data to /home/pavan/src/catkin_ws/build/irona/irona_coverage_report.total
+Summary coverage rate:
+  lines......: 42.7% (2018 of 4722 lines)
+  functions..: 37.9% (1385 of 3658 functions)
+  branches...: no data found
+Reading tracefile /home/pavan/src/catkin_ws/build/irona/irona_coverage_report.total
+Removing /home/pavan/src/catkin_ws/src/irona/test/main.cpp
+Removing /home/pavan/src/catkin_ws/src/irona/test/test_cases.cpp
+Deleted 2 files
+Writing data to /home/pavan/src/catkin_ws/build/irona/irona_coverage_report.info.removed
+Summary coverage rate:
+  lines......: 42.3% (1983 of 4687 lines)
+  functions..: 37.8% (1380 of 3653 functions)
+  branches...: no data found
+Reading tracefile /home/pavan/src/catkin_ws/build/irona/irona_coverage_report.info.removed
+Extracting /home/pavan/src/catkin_ws/devel/include/irona/CleanRoomActionFeedback.h
+Extracting /home/pavan/src/catkin_ws/devel/include/irona/CleanRoomActionGoal.h
+Extracting /home/pavan/src/catkin_ws/devel/include/irona/CleanRoomActionResult.h
+Extracting /home/pavan/src/catkin_ws/devel/include/irona/CleanRoomFeedback.h
+Extracting /home/pavan/src/catkin_ws/devel/include/irona/CleanRoomGoal.h
+Extracting /home/pavan/src/catkin_ws/devel/include/irona/CleanRoomResult.h
+Extracting /home/pavan/src/catkin_ws/devel/include/irona/DetectObject.h
+Extracting /home/pavan/src/catkin_ws/devel/include/irona/DetectObjectRequest.h
+Extracting /home/pavan/src/catkin_ws/devel/include/irona/DetectObjectResponse.h
+Extracting /home/pavan/src/catkin_ws/src/irona/src/detectmain.cpp
+Extracting /home/pavan/src/catkin_ws/src/irona/src/detectobject.cpp
+Extracting /home/pavan/src/catkin_ws/src/irona/src/ironagroup.cpp
+Extracting /home/pavan/src/catkin_ws/src/irona/src/ironamain.cpp
+Extracted 13 files
+Writing data to /home/pavan/src/catkin_ws/build/irona/irona_coverage_report.info.cleaned
+Summary coverage rate:
+  lines......: 42.8% (101 of 236 lines)
+  functions..: 35.7% (25 of 70 functions)
+  branches...: no data found
+Reading data file /home/pavan/src/catkin_ws/build/irona/irona_coverage_report.info.cleaned
+Found 13 entries.
+Found common filename prefix "/home/pavan/src/catkin_ws/devel/include"
+Writing .css and .png files.
+Generating output.
+Processing file irona/DetectObject.h
+Processing file irona/CleanRoomActionResult.h
+Processing file irona/CleanRoomActionFeedback.h
+Processing file irona/CleanRoomFeedback.h
+Processing file irona/CleanRoomResult.h
+Processing file irona/CleanRoomActionGoal.h
+Processing file irona/DetectObjectResponse.h
+Processing file irona/CleanRoomGoal.h
+Processing file irona/DetectObjectRequest.h
+Processing file /home/pavan/src/catkin_ws/src/irona/src/detectmain.cpp
+Processing file /home/pavan/src/catkin_ws/src/irona/src/detectobject.cpp
+Processing file /home/pavan/src/catkin_ws/src/irona/src/ironagroup.cpp
+Processing file /home/pavan/src/catkin_ws/src/irona/src/ironamain.cpp
+Writing directory view page.
+Overall coverage rate:
+  lines......: 42.8% (101 of 236 lines)
+  functions..: 35.7% (25 of 70 functions)
+[ 66%] Built target irona_coverage_report_cpp
+[100%] Processing code coverage counters and generating report.
+Lcov code coverage info report saved in /home/pavan/src/catkin_ws/build/irona/irona_coverage_report.info.
+Open /home/pavan/src/catkin_ws/build/irona/irona_coverage_report/index.html in your browser to view the coverage report.
+Python code coverage html-format: /home/pavan/.ros/htmlcov/index.html.
+[100%] Built target irona_coverage_report
