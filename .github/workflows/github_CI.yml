@@ -96,7 +96,7 @@ jobs:
 
       - name: Unit tests
         run: |
-          cd $HOME/cat_ws/src
+          cd $HOME/cat_ws/
           echo "---------------------------- PWD: $PWD"
           echo "----------------------------PWD LS: $PWD/src/$(ls)"
           echo "----------------------------PWD LS: $PWD/src/$(ls)"
