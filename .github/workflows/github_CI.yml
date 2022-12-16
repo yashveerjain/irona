@@ -50,13 +50,9 @@ jobs:
         run: |   
             sudo apt-get install -y libopencv-dev 
             sudo apt-get install -y libopencv-contrib-dev
-      # - name: install ros
-      #   run: |
-      #       wget -c https://raw.githubusercontent.com/qboticslabs/ros_install_noetic/master/ros_install_noetic.sh && chmod +x ./ros_install_noetic.sh && ./ros_install_noetic.sh
-      #       source /opt/ros/noetic/setup.bash
-      #       sudo apt install -y python3-rosdep python3-rosinstall python3-rosinstall-generator python3-wstool build-essential
-      #       sudo rosdep init
-      #       rosdep update
+      - name: install ros
+        run: |
+            sudo apt-get install ros-noetic-tf2-geometry-msgs
       # - name: turtlebot3 dependencies
       #   run: |
             # sudo apt install -y ros-noetic-ros-control* ros-noetic-control* ros-noetic-moveit*
