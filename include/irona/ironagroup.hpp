@@ -37,7 +37,8 @@
 #include <moveit/move_group_interface/move_group_interface.h>
 #include <moveit/planning_interface/planning_interface.h>
 #include <ros/ros.h>
-
+#include <utility>
+#include <string>
 #include "irona/CleanRoomAction.h"
 #include "irona/DetectObject.h"
 
@@ -91,7 +92,7 @@ class IronaGroup {
    *
    * @param id  // id of the model to be removed
    */
-  void removeModels(const std::string &id); 
+  void removeModels(const std::string &id);
 
   ros::NodeHandle nh_;                     // node handle
   ros::Publisher basePublisher_;           // publisher for base

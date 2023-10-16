@@ -77,4 +77,19 @@ add_dependencies(
 
 if (CATKIN_ENABLE_TESTING)
   find_package(rostest REQUIRED)
+  # Add your tests here
+  add_executable(irona-test test/main.cpp test/test_cases.cpp src/detectobject.cpp src/ironagroup.cpp)
+  target_link_libraries(irona-test ${catkin_LIBRARIES} ${GTEST_LIBRARIES})
+  add_rostest(test/irona_test.test)
+  # catkin_add_gtest(irona-test test/main.cpp test/test_cases.cpp src/detectobject.cpp src/ironagroup.cpp)
+  # target_link_libraries(irona-test ${catkin_LIBRARIES})
+  
+  # Create a target ${PROJECT_NAME}_coverage_report
+  if(ENABLE_COVERAGE_TESTING)
+    set(COVERAGE_EXCLUDES "*/${PROJECT_NAME}/test*")
+    add_code_coverage(
+      NAME ${PROJECT_NAME}_coverage_report
+      # DEPENDENCIES tests
+    )
+  endif()
 endif()
